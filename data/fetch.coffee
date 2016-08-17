@@ -11,53 +11,62 @@ mongoPassword = process.env.OPENSHIFT_MONGODB_DB_PASSWORD
 login = if process.env.OPENSHIFT_MONGODB_DB_PASSWORD then "#{mongoUser}:#{mongoPassword}@" else ""
 mongoHost = process.env.OPENSHIFT_MONGODB_DB_HOST || '127.0.0.1'
 mongoPort = process.env.OPENSHIFT_MONGODB_DB_PORT || '27017'
-appName = process.env.OPENSHIFT_APP_NAME || 'netrunner'
+appName = process.env.OPENSHIFT_APP_NAME || 'conquest'
 
 db = mongoskin.db("mongodb://#{login}#{mongoHost}:#{mongoPort}/#{appName}")
 
 setFields = [
   "name",
-  "available"
+  "code",
+  "cycle_code"
+  "date_release"
 ]
 
 cardFields = [
+  "area_effect",
+  "atk",
+  "bloodied_atk",
+  "bloodied_hp",
+  "card_bonus",
+  "cmd",
   "code",
-  "title",
-  "type",
-  "subtype",
+  "faction_code",
+  "flavor",
+  "hp",
+  "illustrator",
+  "keywords",
+  "loyal",
+  "pack_code",
+  "planet_symbols",
+  "position",
+  "quantity",
+  "resource_bonus",
+  "shields",
+  "signed",
+  "starting_cards",
+  "starting_resources",
   "text",
-  "cost",
-  "advancementcost",
-  "agendapoints",
-  "baselink",
-  "influencelimit",
-  "minimumdecksize",
-  "faction",
-  "factioncost", # influence
-  "number",
-  "setname",
-  "side",
-  "uniqueness",
-  "memoryunits",
-  "strength",
-  "trash",
-  "limited"
+  "title",
+  "traits",
+  "type_code",
+  "unique"
 ]
 
-baseurl = "http://netrunnerdb.com/api/"
+baseurl = "https://raw.githubusercontent.com/elmarco/conquest-cards-json/master/"
 
 selectFields = (fields, objectList) ->
   ((fields.reduce ((newObj, key) -> newObj[key] = obj[key] if typeof(obj[key]) isnt "undefined"; obj.cost = 0 if obj.cost is "X"; newObj), {}) for obj in objectList)
 
 fetchSets = (callback) ->
-  request.get baseurl + "sets", (error, response, body) ->
+  request.get baseurl + "packs.json", (error, response, body) ->
     if !error and response.statusCode is 200
       sets = selectFields(setFields, JSON.parse(body))
-      db.collection("sets").remove ->
-      db.collection("sets").insert sets, (err, result) ->
-        fs.writeFile "andb-sets.json", JSON.stringify(sets), ->
-          console.log("#{sets.length} sets fetched")
+      db.collection("packs").remove ->
+      db.collection("packs").insert sets, (err, result) ->
+        console.log("#{sets.length} sets fetched")
         callback(null, sets.length)
+    else
+      console.log("Fetch error: #{error}")
 
 fetchImg = (code, imgPath, t) ->
   setTimeout ->
@@ -67,24 +76,13 @@ fetchImg = (code, imgPath, t) ->
   , t
 
 fetchCards = (callback) ->
-  request.get baseurl + "cards", (error, response, body) ->
+  request.get baseurl + "pack/core.json", (error, response, body) ->
     if !error and response.statusCode is 200
       cards = selectFields(cardFields, JSON.parse(body))
-      imgDir = path.join(__dirname, "..", "resources", "public", "img", "cards")
-      mkdirp imgDir, (err) ->
-        if err
-          console.error("Failed to create card image resource directory #{imgDir}")
-      i = 0
-      for card in cards
-        imgPath = path.join(imgDir, "#{card.code}.png")
-        if !fs.existsSync(imgPath)
-          fetchImg(card.code, imgPath, i++ * 200)
-
       db.collection("cards").remove ->
       db.collection("cards").insert cards, (err, result) ->
-        fs.writeFile "andb-cards.json", JSON.stringify(cards), ->
-          console.log("#{cards.length} cards fetched")
         callback(null, cards.length)
+        console.log("#{cards.length} cards fetched")
 
 async.parallel [fetchSets, fetchCards], (error, results) ->
   db.close()
