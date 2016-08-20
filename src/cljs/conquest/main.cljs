@@ -1,4 +1,4 @@
-(ns netrunner.main
+(ns conquest.main
   (:require [om.core :as om :include-macros true]
             [sablono.core :as sab :include-macros true]
             [goog.events :as events])
@@ -32,7 +32,7 @@
   (om/component
    (sab/html
     [:ul.carousel-indicator {}
-     (for [page [["Jinteki" "/" 0]
+     (for [page [["Chat" "/" 0]
                  ["Cards" "/cards" 1]
                  ["Deck Builder" "/deckbuilder" 2]
                  ["Play" "/play" 3]
@@ -55,16 +55,16 @@
        (when (:started game)
          [:div.float-right
           (when (not= (:side @app-state) :spectator)
-            [:a.concede-button {:on-click #(netrunner.gameboard/send-command "concede" {:user (:user @app-state)})} "Concede"])
-          [:a {:on-click #(netrunner.gamelobby/leave-game)} "Leave game"]])
+            [:a.concede-button {:on-click #(conquest.gameboard/send-command "concede" {:user (:user @app-state)})} "Concede"])
+          [:a {:on-click #(conquest.gamelobby/leave-game)} "Leave game"]])
        (when (= (:side @app-state) :spectator)
-         [:div.float-right [:a {:on-click #(netrunner.gamelobby/leave-game)} "Leave game"]]))
+         [:div.float-right [:a {:on-click #(conquest.gamelobby/leave-game)} "Leave game"]]))
      (when-let [game (some #(when (= (:gameid cursor) (:gameid %)) %) (:games cursor))]
        (when (:started game)
          (let [c (count (:spectators game))]
             (when (pos? c)
               [:div.spectators-count.float-right (str c " Spectator" (when (> c 1) "s"))
-               [:div.blue-shade.spectators (om/build-all netrunner.gamelobby/player-view
+               [:div.blue-shade.spectators (om/build-all conquest.gamelobby/player-view
                                                          (map (fn [%] {:player % :game game})
                                                               (:spectators game)))]]))))])))
 

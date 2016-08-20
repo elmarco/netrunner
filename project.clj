@@ -1,4 +1,4 @@
-(defproject netrunner "0.1.0-SNAPSHOT"
+(defproject conquest "0.1.0-SNAPSHOT"
   :description "FIXME: write this!"
   :url "http://example.com/FIXME"
 
@@ -36,7 +36,7 @@
                   :optimizations :none
                   :source-map true}},
       {:id "prod"
-       :source-paths ["src/cljs/netrunner"]
+       :source-paths ["src/cljs/conquest"]
        :compiler {:output-to "resources/public/js/app.js"
                   :output-dir "out"
                   :optimizations :advanced

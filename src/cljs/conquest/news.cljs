@@ -1,9 +1,9 @@
-(ns netrunner.news
+(ns conquest.news
   (:require-macros [cljs.core.async.macros :refer [go]])
   (:require [om.core :as om :include-macros true]
             [sablono.core :as sab :include-macros true]
-            [netrunner.cardbrowser :refer [add-symbols] :as cb]
-            [netrunner.ajax :refer [GET]]))
+            [conquest.cardbrowser :refer [add-symbols] :as cb]
+            [conquest.ajax :refer [GET]]))
 
 (def app-state (atom {}))
 

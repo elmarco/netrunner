@@ -1,10 +1,10 @@
-(ns netrunner.cardbrowser
+(ns conquest.cardbrowser
   (:require-macros [cljs.core.async.macros :refer [go]])
   (:require [om.core :as om :include-macros true]
             [sablono.core :as sab :include-macros true]
             [cljs.core.async :refer [chan put! >!] :as async]
-            [netrunner.main :refer [app-state]]
-            [netrunner.ajax :refer [GET]]))
+            [conquest.main :refer [app-state]]
+            [conquest.ajax :refer [GET]]))
 
 (def cards-channel (chan))
 
@@ -15,7 +15,7 @@
       (put! cards-channel cards)))
 
 (defn make-span [text symbol class]
-  (.replace text (js/RegExp. symbol "g") (str "<span class='anr-icon " class "'></span>")))
+  (.replace text (js/RegExp. symbol "g") (str "<span class='w4c-icon " class "'></span>")))
 
 (defn image-url [card]
   (str "/img/cards/" (:code card) ".png"))
@@ -41,8 +41,8 @@
      [:h4 (:title card)]
      (when-let [memory (:memoryunits card)]
        (if (< memory 3)
-         [:div.anr-icon {:class (str "mu" memory)} ""]
-         [:div.heading (str "Memory: " memory) [:span.anr-icon.mu]]))
+         [:div.w4c-icon {:class (str "mu" memory)} ""]
+         [:div.heading (str "Memory: " memory) [:span.w4c-icon.mu]]))
      (when-let [cost (:cost card)]
        [:div.heading (str "Cost: " cost)])
      (when-let [trash-cost (:trash card)]

@@ -6,7 +6,7 @@ html
     meta(name="apple-mobile-web-app-capable", content="yes")
     title Jinteki
     link(rel='stylesheet', href='/css/carousel.css')
-    link(rel='stylesheet', href='/css/netrunner.css')
+    link(rel='stylesheet', href='/css/conquest.css')
     link(rel='stylesheet', href='/lib/toastr/toastr.min.css')
     link(rel='stylesheet', href='/lib/jqueryui/themes/base/jquery-ui.min.css')
   body
@@ -40,17 +40,17 @@ html
       script(src="/cljs/goog/base.js", type="text/javascript")
       script(src="/cljs/app.js?v=#{version}", type="text/javascript")
       script(type="text/javascript").
-        goog.require("netrunner.main");
-        goog.require("netrunner.ajax");
-        goog.require("netrunner.auth");
-        goog.require("netrunner.chat");
-        goog.require("netrunner.gameboard");
-        goog.require("netrunner.gamelobby");
-        goog.require("netrunner.cardbrowser");
-        goog.require("netrunner.deckbuilder");
-        goog.require("netrunner.help");
-        goog.require("netrunner.about");
-        goog.require("netrunner.news");
+        goog.require("conquest.main");
+        goog.require("conquest.ajax");
+        goog.require("conquest.auth");
+        goog.require("conquest.chat");
+        goog.require("conquest.gameboard");
+        goog.require("conquest.gamelobby");
+        goog.require("conquest.cardbrowser");
+        goog.require("conquest.deckbuilder");
+        goog.require("conquest.help");
+        goog.require("conquest.about");
+        goog.require("conquest.news");
         goog.require("dev.figwheel");
     else
       script(src='/lib/react/react.min.js')

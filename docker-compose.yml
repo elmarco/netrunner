@@ -1,7 +1,7 @@
 mongo:
     image: mongo:3.1.5
     volumes:
-        - /tmp/netrunner/mongo-data:/data/db
+        - /tmp/conquest/mongo-data:/data/db
 nodeBase:
     image: node:0.12.7
     volumes:
@@ -16,14 +16,14 @@ nodeBase:
                cd data && OPENSHIFT_MONGODB_DB_HOST=mongo \
                             ../node_modules/.bin/coffee fetch.coffee \
                        && cd ..
-               MONGO_URL=mongodb://mongo/netrunner \
+               MONGO_URL=mongodb://mongo/conquest \
                CLOJURE_HOST=clojure \
                  ./node_modules/.bin/coffee server.coffee"
 clojureBase:
     image: clojure:lein-2.5.1
     volumes:
         - .:/workdir
-        - /tmp/netrunner/maven_repo:/root/.m2/repository
+        - /tmp/conquest/maven_repo:/root/.m2/repository
 prod:
     extends:
         service: nodeBase
@@ -48,7 +48,7 @@ clojureProd:
         sh -c "cd /workdir
                lein uberjar
                ZMQ_HOST='*' \
-                 java -jar target/netrunner-0.1.0-SNAPSHOT-standalone.jar"
+                 java -jar target/conquest-0.1.0-SNAPSHOT-standalone.jar"
 clojureDev:
     extends:
         service: clojureBase

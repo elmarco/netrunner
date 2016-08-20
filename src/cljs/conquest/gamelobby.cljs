@@ -1,18 +1,18 @@
-(ns netrunner.gamelobby
+(ns conquest.gamelobby
   (:require-macros [cljs.core.async.macros :refer [go]])
   (:require [om.core :as om :include-macros true]
             [sablono.core :as sab :include-macros true]
             [cljs.core.async :refer [chan put! <!] :as async]
             [clojure.string :refer [join]]
-            [netrunner.main :refer [app-state]]
-            [netrunner.auth :refer [authenticated avatar] :as auth]
-            [netrunner.gameboard :refer [init-game game-state]]
-            [netrunner.cardbrowser :refer [image-url] :as cb]
-            [netrunner.deckbuilder :refer [deck-status-span deck-status-label]]))
+            [conquest.main :refer [app-state]]
+            [conquest.auth :refer [authenticated avatar] :as auth]
+            [conquest.gameboard :refer [init-game game-state]]
+            [conquest.cardbrowser :refer [image-url] :as cb]
+            [conquest.deckbuilder :refer [deck-status-span deck-status-label]]))
 
 (def socket-channel (chan))
 (def socket (.connect js/io (str js/iourl "/lobby")))
-(.on socket "netrunner" #(put! socket-channel (js->clj % :keywordize-keys true)))
+(.on socket "conquest" #(put! socket-channel (js->clj % :keywordize-keys true)))
 
 (defn launch-game [game]
   (let [user (:user @app-state)
@@ -62,7 +62,7 @@
   ([msg] (send msg nil))
   ([msg fn]
    (try (js/ga "send" "event" "lobby" msg) (catch js/Error e))
-   (.emit socket "netrunner" (clj->js msg) fn)))
+   (.emit socket "conquest" (clj->js msg) fn)))
 
 (defn new-game [cursor owner]
   (authenticated

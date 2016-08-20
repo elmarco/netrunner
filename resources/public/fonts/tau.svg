@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   id="svg6122"
+   version="1.1"
+   inkscape:version="0.91 r13725"
+   width="128"
+   height="128"
+   viewBox="0 0 128 128"
+   sodipodi:docname="tau.svg">
+  <metadata
+     id="metadata6128">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title />
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <defs
+     id="defs6126" />
+  <sodipodi:namedview
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1"
+     objecttolerance="10"
+     gridtolerance="10"
+     guidetolerance="10"
+     inkscape:pageopacity="0"
+     inkscape:pageshadow="2"
+     inkscape:window-width="1600"
+     inkscape:window-height="838"
+     id="namedview6124"
+     showgrid="false"
+     inkscape:zoom="2.2006579"
+     inkscape:cx="-96.994464"
+     inkscape:cy="43.977008"
+     inkscape:window-x="0"
+     inkscape:window-y="25"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="svg6122" />
+  <g
+     id="g8307"
+     transform="matrix(0.7261372,0,0,0.7261372,17.132763,17.131042)">
+    <path
+       inkscape:connector-curvature="0"
+       id="path6132"
+       d="M 36.606179,13.910752 A 62.951756,58.846209 0 0 0 1.590022,66.614383 62.951756,58.846209 0 0 0 56.505332,124.90015 l 0,-66.585413 A 32.844392,29.765231 0 0 1 31.700506,29.49244 32.844392,29.765231 0 0 1 36.606179,13.910752 Z m 55.938796,0.07647 a 32.844392,29.765231 0 0 1 4.84097,15.505222 32.844392,29.765231 0 0 1 -24.804829,28.834084 l 0,66.591272 A 62.951756,58.846209 0 0 0 127.49643,66.614383 62.951756,58.846209 0 0 0 92.544975,13.987221 Z"
+       style="fill:#000000;stroke-width:2.5;stroke-miterlimit:4;stroke-dasharray:none" />
+    <ellipse
+       ry="22.019588"
+       rx="23.949039"
+       cy="26.19298"
+       cx="64.543221"
+       id="path6151"
+       style="fill:#000000;stroke-width:2.5;stroke-miterlimit:4;stroke-dasharray:none" />
+  </g>
+</svg>

@@ -1,13 +1,13 @@
-(ns netrunner.deckbuilder
+(ns conquest.deckbuilder
   (:require-macros [cljs.core.async.macros :refer [go]])
   (:require [om.core :as om :include-macros true]
             [sablono.core :as sab :include-macros true]
             [cljs.core.async :refer [chan put! <! timeout] :as async]
             [clojure.string :refer [split split-lines join escape]]
-            [netrunner.main :refer [app-state]]
-            [netrunner.auth :refer [authenticated] :as auth]
-            [netrunner.cardbrowser :refer [cards-channel image-url card-view] :as cb]
-            [netrunner.ajax :refer [POST GET]]))
+            [conquest.main :refer [app-state]]
+            [conquest.auth :refer [authenticated] :as auth]
+            [conquest.cardbrowser :refer [cards-channel image-url card-view] :as cb]
+            [conquest.ajax :refer [POST GET]]))
 
 (def select-channel (chan))
 (def zoom-channel (chan))

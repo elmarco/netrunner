@@ -1,10 +1,10 @@
-(ns netrunner.auth
+(ns conquest.auth
   (:require-macros [cljs.core.async.macros :refer [go]])
   (:require [om.core :as om :include-macros true]
             [sablono.core :as sab :include-macros true]
             [cljs.core.async :refer [chan put!] :as async]
-            [netrunner.main :refer [app-state]]
-            [netrunner.ajax :refer [POST GET]]))
+            [conquest.main :refer [app-state]]
+            [conquest.ajax :refer [POST GET]]))
 
 (defn avatar [{:keys [emailhash]} owner opts]
   (om/component

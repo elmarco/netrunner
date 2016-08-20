@@ -1,10 +1,10 @@
 {
-  "name": "netrunner",
+  "name": "conquest",
   "version": "0.0.1",
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/mtgred/netrunner.git"
+    "url": "https://github.com/elmarco/conquest.git"
   },
   "devDependencies": {
     "bower": "1.7.9",

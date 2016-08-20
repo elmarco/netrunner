@@ -1,11 +1,11 @@
-(ns netrunner.chat
+(ns conquest.chat
   (:require-macros [cljs.core.async.macros :refer [go]])
   (:require [om.core :as om :include-macros true]
             [sablono.core :as sab :include-macros true]
             [cljs.core.async :refer [chan put! <!] :as async]
-            [netrunner.auth :refer [avatar authenticated] :as auth]
-            [netrunner.ajax :refer [GET]]
-            [netrunner.main :as main]))
+            [conquest.auth :refer [avatar authenticated] :as auth]
+            [conquest.ajax :refer [GET]]
+            [conquest.main :as main]))
 
 (def app-state
   (atom {:channels {:general [] :america [] :europe [] :asia-pacific [] :united-kingdom [] :français []
@@ -14,7 +14,7 @@
 (def chat-channel (chan))
 (def chat-socket (.connect js/io (str js/iourl "/chat")))
 
-(.on chat-socket "netrunner" #(put! chat-channel (js->clj % :keywordize-keys true)))
+(.on chat-socket "conquest" #(put! chat-channel (js->clj % :keywordize-keys true)))
 
 (go (while true
       (let [msg (<! chat-channel)
@@ -30,7 +30,7 @@
            text (.-value input)
            $div (js/$ ".chat-app .message-list")]
        (when-not (empty? text)
-         (.emit chat-socket "netrunner" #js {:channel (name channel)
+         (.emit chat-socket "conquest" #js {:channel (name channel)
                                              :msg text
                                              :username (:username user)
                                              :emailhash (:emailhash user)})
